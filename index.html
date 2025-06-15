@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags for SEO and responsive design -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Student Registration System - A comprehensive platform for managing student records with add, edit, and delete functionality"
+    />
+    <meta
+      name="keywords"
+      content="student registration, student management, academic records"
+    />
+    <meta name="author" content="Student Registration System" />
+
+    <title>Student Registration System - Manage Student Records</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1>🎓 Student Registration System</h1>
+            <p>A comprehensive platform for managing student records efficiently. Add, edit, and delete student information with advanced validation and persistent storage capabilities.</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-link active" onclick="showSection('registration')">📝 Student Registration</a>
+            <a href="#" class="nav-link" onclick="showSection('records')">📊 View Records</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Success/Error Messages -->
+        <div id="message" class="message"></div>
+
+        <!-- Registration Section -->
+        <section id="registration-section" class="section">
+            <h2>Student Registration Form</h2>
+            <form id="studentForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">Student Name *</label>
+                        <input type="text" id="studentName" name="studentName" placeholder="Enter full name" required>
+                        <div class="error-message" id="nameError">Please enter a valid name (letters and spaces only)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="studentId">Student ID *</label>
+                        <input type="text" id="studentId" name="studentId" placeholder="Enter student ID (numbers only)" required>
+                        <div class="error-message" id="idError">Please enter a valid student ID (numbers only)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactNo">Contact Number *</label>
+                        <input type="text" id="contactNo" name="contactNo" placeholder="Enter contact number" required>
+                        <div class="error-message" id="contactError">Please enter a valid contact number (10 digits)</div>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Add Student</button>
+                    <button type="button" class="btn btn-danger" onclick="clearForm()">Clear Form</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Records Display Section -->
+        <section id="records-section" class="section hidden">
+            <h2>Student Records</h2>
+            <div id="recordsDisplay">
+                <div class="records-container">
+                    <div class="table-container">
+                        <table class="student-table" id="studentTable">
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Student ID</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableBody">
+                                <!-- Student records will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="emptyState" class="empty-state">
+                    <div style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.5;">📚</div>
+                    <h3>No Students Registered Yet</h3>
+                    <p>Start by adding your first student record!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>Edit Student Information</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editStudentName">Student Name *</label>
+                    <input type="text" id="editStudentName" required>
+                    <div class="error-message" id="editNameError">Please enter a valid name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editStudentId">Student ID *</label>
+                    <input type="text" id="editStudentId" required>
+                    <div class="error-message" id="editIdError">Please enter a valid student ID</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editEmail">Email Address *</label>
+                    <input type="email" id="editEmail" required>
+                    <div class="error-message" id="editEmailError">Please enter a valid email</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editContactNo">Contact Number *</label>
+                    <input type="text" id="editContactNo" required>
+                    <div class="error-message" id="editContactError">Please enter a valid contact number</div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-success">Update Student</button>
+                    <button type="button" class="btn btn-danger" onclick="closeEditModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</html>
